@@ -1,0 +1,20 @@
+MONGODB
+COMANDOS:
+sudo service mongod start: para iniciar o servico
+mongo: para entrar no banco
+sudo service mongod stop: para parar o servico
+sudo service mongod restart: para reiniciar o servico
+
+
+PROBLEMAS ENCONTRADOS E SOLUÇÕES
+Tive problema para iniciar o mongo apos alguns dias da instalação.
+a solução para o problema foi deletar o arquivo mongodb-27017.sock que 
+estava na pasta /tmp/mongodb-27017.sock e reiniciar o servico com o sudo service mongod start
+
+NODE
+COMANDOS:
+
+npm start: para iniciar 
+DEPENDENCIAS:
+express: para criar rotas, servidor entre outros
+nodemon: para o servidor continuar rodando mesmo com alterações nos codigos

@@ -1,0 +1,21 @@
+<html>
+<head>
+{{!colocando titulo personalizado na pagina}}
+{{#pageTitle}}
+<title>{{pageTitle}}</title>
+{{/pageTitle}}
+{{!colocando titulo padrão caso o pesonalizado nao seja definido}}
+{{^pageTitle}}
+<title>{{h.defaultPageTitle}}</title>
+{{/pageTitle}}
+</head>
+<body>
+<h1>Cabeçalho</h1>
+<hr>
+<ul>
+{{!acessando os itens do menu que foi criado no helpers e saldo na 
+variavel global h}}
+{{#h.menu}}
+<li><a href="{{slug}}">{{name}}</a></li>
+{{/h.menu}}
+</ul>

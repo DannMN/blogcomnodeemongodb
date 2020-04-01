@@ -1,0 +1,19 @@
+<h1>Seja Bem Vindo</h1>
+<p>Essa é uma aplicação desenvolvida com nodeJS, MongoDB e Mustache</p>
+
+{{#mostrar}}<!--Condicional com mustache: Ele identifica que é um boolean e mostra ou nao o conteudo-->
+<h2>Ola {{nome}},</h2>
+<p>Sei que você tem {{idade}}</p>
+{{/mostrar}}<!--Fim da condição-->
+<ul>
+{{#ingredientes}}<!--Loop: o mustach identifica que tem objetos dentro do array ingredientes e faz o loop-->
+<li>{{nome}} - Quantidade: {{quat}}</li>
+{{/ingredientes}}
+{{^ingredientes}}<!--Testo alternativo caso algo nao aconteça-->
+<p>Sem ingredientes</p>
+{{/ingredientes}}
+</ul>
+<hr>
+{{{teste}}}<!--com duas chaves ele interpreta js, com tres HTML-->
+
+{{!comentarios no mustache são feitos assim}}
