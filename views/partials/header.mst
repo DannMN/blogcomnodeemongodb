@@ -8,14 +8,43 @@
 {{^pageTitle}}
 <title>{{h.defaultPageTitle}}</title>
 {{/pageTitle}}
+<style>
+    
+    *{
+        
+        box-sizing: border-box;
+    }
+    nav.menu ul {
+        display: flex;
+        justify-content: flex-end;
+        list-style: none;
+    }
+    nav.menu ul a{
+        padding: 1em;
+        text-decoration: none;
+        color: black;
+        border: 1px;
+        transition: border 0.2s;
+    }
+    nav.menu ul a:hover{
+        border: 1px solid black;
+        background-color: #c1c1c1;
+        color: white;
+    }
+</style>
 </head>
 <body>
-<h1>Cabeçalho</h1>
-<hr>
-<ul>
-{{!acessando os itens do menu que foi criado no helpers e saldo na 
-variavel global h}}
-{{#h.menu}}
-<li><a href="{{slug}}">{{name}}</a></li>
-{{/h.menu}}
-</ul>
+<header>
+    <h1>Cabeçalho</h1>
+    <hr>
+    <nav class="menu">
+            <ul>
+                {{!acessando os itens do menu que foi criado no helpers e saldo na 
+                variavel global h}}
+                {{#h.menu}}
+                <li><a href="{{slug}}">{{name}}</a></li>
+                {{/h.menu}}
+            </ul>
+    </nav>
+    <hr>
+</header>
