@@ -11,7 +11,7 @@ exports.addAction = async (req, res)=>{
     const post = new Post(req.body)   
     //salva dentro do banco os dados
     await post.save()
-    
+    req.flash('success', 'Post salvo com sucesso')
     // Apos salvar o post o usuario sera redirecionado para a home
     res.redirect('/')
 }

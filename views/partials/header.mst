@@ -48,3 +48,8 @@
     </nav>
     <hr>
 </header>
+{{#flashes}}
+    {{#success}}
+    <div>{{.}}</div>
+    {{/success}}
+{{/flashes}}

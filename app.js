@@ -10,12 +10,7 @@ const errorHandler = require('./handlers/errorHandler')
 
 //config
 const app = express()
-//este app.use deve ficar antes das rotas para que elas tenham acesso as informações
-app.use((req, res, next)=>{
-    res.locals.h = helpers//colocando os objs padrões em uma variavel global chamada h
-    res.locals.flashes = req.flash()
-    next()
-})
+
 //esta linha abaixo da o poder de trabalhar com json, mas eficiente em cima do router
 app.use(express.json())
 
@@ -25,15 +20,23 @@ app.use(express.urlencoded( { extended:true } ) )
 //Para habilitar cookie
 app.use(cookieParser(process.env.SECRET))
 
+
 //Para habilitar session
 app.use(session({
     secret: process.env.SECRET,
     resave:false,
     saveUninitialized:false
-    })
-    )
+})
+)
 //Para habilitar mensagem flash
 app.use(flash())
+
+//este app.use deve ficar antes das rotas para que elas tenham acesso as informações
+app.use((req, res, next)=>{
+    res.locals.h = helpers//colocando os objs padrões em uma variavel global chamada h
+    res.locals.flashes = req.flash()
+    next()
+})
 
 //passando o acesso ao site o router
 app.use('/', router)
