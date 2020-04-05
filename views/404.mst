@@ -1,3 +1,4 @@
+{{> header }}
 <h1>Oi, o que você esta fazendo aqui!</h1>
 <h3>Esta página não existe</p>
 {{>footer}}

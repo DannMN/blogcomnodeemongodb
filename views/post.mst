@@ -1,4 +1,5 @@
 {{> header }}
+
 <h2>{{title}}</h2>
 <p>{{body}}</p>
 
@@ -6,4 +7,5 @@
     <small>{{tags}}</small>
 {{/tags}}
 <br>
+
 {{> footer }}

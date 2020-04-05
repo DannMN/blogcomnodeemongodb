@@ -18,23 +18,9 @@ exports.index = async (req, res)=>{
     //POST: req.body
     //PARAMETROS DA URL: req.params
     // res.json(req.query)
-    let responseJson = {
-        pageTitle: 'Daniel Meireles',
-        userInfo: req.userInfo,
-        posts: []
-        // nome: req.query.nome || "Daniel",
-        // idade: req.query.idade || 34,
-        // mostrar: false,
-        // ingredientes:[
-        //     {nome: 'Arroz', quat: '20g' },
-        //     {nome: 'Macarrão', quat: '500g'},
-        //     {nome: 'Feijão', quat: '1kg'}
-        // ],
-        // interesses: ['node', 'js','css'],
-        // teste:'<strong>Testando Negrito</strong>'
-    }
+    
     const posts = await Post.find()
-    responseJson.posts = posts
+    req.h.posts = posts
 
-    res.render('home', responseJson)  
+    res.render('home', h)  
 }
