@@ -1,11 +1,11 @@
 {{>header}}{{!Puxando paginas fixas do site}}
-{{#pageTitle}}
-<h1>{{pageTitle}}</h1>
-{{/pageTitle}}
-{{^pageTitle}}
-<h1>{{h.defaultPageTitle}}</h1>
-{{/pageTitle}}
 
 <!-- <p>Usuario Logado ID: {{userInfo.id}}</p> }}-->
 
+{{#posts}}
+<h2><a href="/post/{{slug}}">{{title}}</a></h2>
+<p>{{body}}</p>
+<a href="/post/{{slug}}/edit">[ Editar ]</a>
+<hr>
+{{/posts}}
 

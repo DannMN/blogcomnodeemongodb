@@ -1,20 +1,20 @@
 {{>header}}
-<h2>Adicionar Post</h2>
+<h2>Editar Post</h2>
 <div class="container">
     <form method="POST">
         <label>
             Titulo:
-            <input type="text" name="title">
+            <input type="Text" name="title" value="{{post.title}}">
         </label>
         <hr>
         <label>
             Corpo:
-            <textarea name="body"></textarea>
+            <textarea name="body" >{{post.body}}</textarea>
         </label>
         <hr>
         <label>
             Tags:<small>Separar as tags por virgula</small><br>
-            <input type="text" name="tags"/>
+            <input type="text" name="tags"value="{{post.tags}}"/>
         </label>
         <hr>
         <label>

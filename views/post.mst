@@ -1,0 +1,9 @@
+{{> header }}
+<h2>{{title}}</h2>
+<p>{{body}}</p>
+
+{{#tags}}
+    <small>{{tags}}</small>
+{{/tags}}
+<br>
+{{> footer }}

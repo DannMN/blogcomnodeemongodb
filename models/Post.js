@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const slug = require('slug')
 
 //definindo Promise's para que o mongoose trabalhe com elas
 mongoose.Promise = global.Promise
@@ -27,6 +28,13 @@ const postSchema = new mongoose.Schema({
     },
     //defini as tags como array de strings 
     tags:[String]
+})
+
+postSchema.pre('save', function(next){
+    if(this.isModified('title')){
+        this.slug = slug( this.title, { lower:true } )
+    }
+    next()
 })
 //exportamos o modelo criado acima
 module.exports = mongoose.model('Post', postSchema)
