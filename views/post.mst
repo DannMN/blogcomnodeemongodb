@@ -1,11 +1,14 @@
 {{> header }}
-
+{{#post}}
+<div class="post-single">
+{{#photo}}
+    <img src="/media/{{photo}}">
+{{/photo}}
 <h2>{{title}}</h2>
 <p>{{body}}</p>
-
-{{#tags}}
+<hr>
+<strong>tags:</strong>
     <small>{{tags}}</small>
-{{/tags}}
-<br>
-
+</div>
+{{/post}}
 {{> footer }}

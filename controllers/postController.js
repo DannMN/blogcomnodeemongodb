@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
-const Post = mongoose.model('Post')
 const slug = require('slug')
+const Post = mongoose.model('Post')
 
 exports.add =(req, res)=>{
     res.render('postAdd');
@@ -34,7 +34,7 @@ exports.edit = async (req, res) =>{
     //usamos o slug para fazer uma busca no banco que retorna o post
     const post = await Post.findOne({ slug })
     //enviamos para a tela os dados
-    res.render('postEdit', { post })
+    res.render('postEdit', post)
 }
 //enviando os novos dados para o banco de dados
 exports.editAction = async (req, res)=>{
@@ -66,9 +66,11 @@ exports.editAction = async (req, res)=>{
             }
 }
 exports.postView = async (req, res)=>{
+    //Pegando o slug para fazer pesquisa no banco de dados
     const slug = req.params.slug
+    //encontrando o post com base no slug e retornando os dados para a const post
     const post = await Post.findOne({ slug })
-
-    res.render('post', post)
+    //chamando o view post e enviando o post 
+    res.render('post', { post })
 
 }

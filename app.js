@@ -5,7 +5,7 @@ const session = require('express-session')
 const flash = require('express-flash')
 
 const router = require('./routes')//importando as rotas
-const responseJson = require('./helpers')//importando objetos padrões
+const infoSite = require('./helpers')//importando objetos padrões
 const errorHandler = require('./handlers/errorHandler')
 
 //config
@@ -16,6 +16,9 @@ app.use(express.json())
 
 //Sem esta linha os dados do post nao vao para a proxima parte
 app.use(express.urlencoded( { extended:true } ) )
+
+//colocando a pasta public como estatica
+app.use(express.static(__dirname+'/public'))
 
 //Para habilitar cookie
 app.use(cookieParser(process.env.SECRET))
@@ -33,11 +36,14 @@ app.use(flash())
 
 //este app.use deve ficar antes das rotas para que elas tenham acesso as informações
 app.use((req, res, next)=>{
-    res.locals.h = responseJson//colocando os objs padrões em uma variavel global chamada h
     
+    //colocando os objs padrões em uma variavel global chamada h
+    res.locals.h = infoSite    
     res.locals.flashes = req.flash()
+    
     next()
 })
+
 
 //passando o acesso ao site o router
 app.use('/', router)

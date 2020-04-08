@@ -2,13 +2,14 @@
 <head>
 {{!colocando titulo personalizado na pagina}}
 {{#pageTitle}}
-<title>{{pageTitle}}</title>
+    <title>{{pageTitle}}</title>
 {{/pageTitle}}
 {{!colocando titulo padrão caso o pesonalizado nao seja definido}}
 {{^pageTitle}}
-<title>{{h.defaultPageTitle}}</title>
+    <title>{{h.defaultTitle}}</title>
 {{/pageTitle}}
-<style>
+<link rel="stylesheet" href="/assets/css/style.css">
+{{! <style>
     
     *{
         
@@ -39,35 +40,36 @@
         background-color: #c1c1c1;
         padding:5px;
     }
-</style>
+</style> }}
+
 </head>
 <body>
 
 <header>
-    {{#h.pageTitle}}
-        <h1>{{h.responseJson.pageTitle}}</h1>
-    {{/h.responseJson.pageTitle}}
-    {{^h.responseJson.pageTitle}}
-        <h1>{{h.defaultPageTitle}}</h1>
-    {{/h.responseJson.pageTitle}}
+    {{#pageTitle}}
+        <h1>{{pageTitle}}</h1>
+    {{/pageTitle}}
+    {{^pageTitle}}
+        <h1>{{h.defaultTitle}}</h1>
+    {{/pageTitle}}
     <hr>
-    <nav class="menu">
             <ul>
                 {{!acessando os itens do menu que foi criado no helpers e saldo na 
                 variavel global h}}
-                {{#h.responseJson.menu}}
+                {{#h.menu}}
                 <li><a href="{{slug}}">{{name}}</a></li>
-                {{/h.responseJson.menu}}
+                {{/h.menu}}
             </ul>
-    </nav>
-    <hr>
+    
 </header>
-<div class="container">
-{{#flashes}}
-    {{#success}}
-    <div>{{.}}</div>
-    {{/success}}
-    {{#error}}
-    <div>{{.}}</div>
-    {{/error}}
-{{/flashes}}
+    {{#flashes}}        
+            {{#success}}
+            <div class="warning">{{.}}</div>
+            {{/success}}
+            {{#error}}
+            <div class="warning">{{.}}</div>
+            {{/error}}
+            {{#info}}
+            <div class="warning">{{.}}</div>
+            {{/info}}
+    {{/flashes}}

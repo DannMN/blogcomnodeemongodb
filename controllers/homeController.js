@@ -19,8 +19,30 @@ exports.index = async (req, res)=>{
     //PARAMETROS DA URL: req.params
     // res.json(req.query)
     
-    const posts = await Post.find()
-    req.h.posts = posts
+    let info= {
+        pageTitle: "Blog -- Daniel Meireles",
+        posts: [],
+        tags: [],
+        tag:''
+    }
+    
+    
+    info.tag = req.query.t
+    const tagFilter = ((typeof info.tag )!= 'undefined')? {tags: info.tag }:{}
+    
+    const tagsPromise =  Post.getTagsList();    
+    const postsPromise = Post.find(tagFilter)
 
-    res.render('home', h)  
+    const [tags, posts] = await Promise.all([tagsPromise, postsPromise])
+
+    for(let i in tags){
+        if(tags[i]._id == info.tag){
+            tags[i].class = "selected"
+        }
+    }
+
+    info.tags = tags
+    info.posts = posts
+
+    res.render('home', info)  
 }

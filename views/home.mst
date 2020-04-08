@@ -1,11 +1,19 @@
-{{>header}}{{!Puxando paginas fixas do site}}
+{{> header }}{{!Puxando paginas fixas do site}}
 
 <!-- <p>Usuario Logado ID: {{userInfo.id}}</p> }}-->
-
+<div class="tags">
+    {{#tags}}
+    <div class="tag {{class}}"><a href="/?t={{_id}}">{{_id}} ({{count}})</a></div>
+    {{/tags}}
+</div>
 {{#posts}}
+<div class="post">
 <h2><a href="/post/{{slug}}">{{title}}</a></h2>
+<img src="/media/{{photo}}">
 <p>{{body}}</p>
 <a href="/post/{{slug}}/edit">[ Editar ]</a>
 <hr>
+</div>
 {{/posts}}
 
+{{> footer}}
