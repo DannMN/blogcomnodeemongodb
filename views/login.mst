@@ -1,12 +1,23 @@
 {{> header}}
-
+<div class="container">
 <h1>Faça seu Login</h1>
-<form >
-    <input type="text" name="usuario">
-    
-    <button>Entrar</button>
+<form method="POST">
+<label>
+        E-mail
+        <input type="text" name="email" placeholder="Digite seu E-mail">
+    </label>
+    <br>
+    <label>
+        Senha:
+        <input type="password" name="password" placeholder="Digite sua senha">
+    </label>
+    <br>
+    <label>
+        <input type="submit" value="Entrar">
+    </label>
 </form>
 
-<a href="/singup">Ainda não sou cadastrado! Cadastrar</a>
+<a href="/users/singup">Ainda não sou cadastrado! Cadastrar</a>
 <br>
+</div>
 {{>footer}}

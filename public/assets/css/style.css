@@ -79,7 +79,7 @@ input, textarea {
 textarea {
     height:200px;
 }
-input[type=submit]:hover {
+input[type=submit]:hover, input[type=submit]:focus {
     background-color:#EFEFEF;
     cursor:pointer;
 }

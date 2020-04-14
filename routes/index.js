@@ -12,9 +12,13 @@ const router = express.Router()
 //o Terceiro é o controller so ira executar se o middleware o chamar
 // router.get('/', homeController.userMiddleware, homeController.index)
 router.get('/', homeController.index)
+
 router.get('/users/login', userController.login)
-router.get('/singup', userController.register)
-router.post('/singup', userController.registerAction)
+router.post('/users/login', userController.loginAction)
+
+router.get('/users/singup', userController.register)
+router.post('/users/singup', userController.registerAction)
+
 router.get('/post/add', postController.add)
 router.post('/post/add',
             imageMiddleware.upload,

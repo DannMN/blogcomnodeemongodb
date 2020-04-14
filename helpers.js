@@ -14,6 +14,6 @@ exports.defaultTitle = 'Seu site ainda nao tem um titulo'
 exports.menu = [
     {name:'Home', slug:'/'},
     {name: 'Login', slug:'/users/login'},
-    {name:'Cadastrar', slug:'/singup'},
+    {name:'Cadastrar', slug:'/users/singup'},
     {name:'Adicionar Post', slug:'/post/add'}
 ]
