@@ -1,4 +1,24 @@
-<h1>Cadastro de usuários</h1>
+{{> header}}
+<div class="container">
+    <h1>Faça seu cadastro</h1>
+    <form method="POST">
+        <label>
+        <input type="text" name="name" placeholder="Digite seu nome">
+        </label>
+        <br>
+        <label>
+        <input type="email" name="email" placeholder="Digite seu E-mail">
+        </label>
+        <br>
+        <label>
+        <input type="password" name="pass" placeholder="Digite sua senha">
+        </label>
+        <br>
+        <label>
+        <input type="submit" value="Cadastrar">
+        </label>
+    </form>
 
+</div>
 
 {{>footer}}

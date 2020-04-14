@@ -4,6 +4,10 @@ const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const flash = require('express-flash')
 
+const passport = require('passport')
+const LocalStrategy = require('passport-local').Strategy
+
+
 const router = require('./routes')//importando as rotas
 const infoSite = require('./helpers')//importando objetos padrões
 const errorHandler = require('./handlers/errorHandler')
@@ -35,6 +39,7 @@ app.use(session({
 app.use(flash())
 
 //este app.use deve ficar antes das rotas para que elas tenham acesso as informações
+
 app.use((req, res, next)=>{
     
     //colocando os objs padrões em uma variavel global chamada h
@@ -43,6 +48,13 @@ app.use((req, res, next)=>{
     
     next()
 })
+app.use(passport.initialize())
+app.use(passport.session())
+
+const User = require('./models/User')
+passport.use(new LocalStrategy(User.authenticate()))
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
 
 
 //passando o acesso ao site o router
