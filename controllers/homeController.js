@@ -23,9 +23,10 @@ exports.index = async (req, res)=>{
         pageTitle: "Blog -- Daniel Meireles",
         posts: [],
         tags: [],
-        tag:''
+        tag:'',
+        user: req.user
     }
-    
+
     
     info.tag = req.query.t
     const tagFilter = ((typeof info.tag )!= 'undefined')? {tags: info.tag }:{}

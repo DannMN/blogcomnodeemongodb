@@ -8,8 +8,8 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 
 
-const router = require('./routes')//importando as rotas
 const infoSite = require('./helpers')//importando objetos padrões
+const router = require('./routes')//importando as rotas
 const errorHandler = require('./handlers/errorHandler')
 
 //config
@@ -40,11 +40,11 @@ app.use(flash())
 
 //este app.use deve ficar antes das rotas para que elas tenham acesso as informações
 
-app.use((req, res, next)=>{
-    
+app.use((req, res, next)=>{    
     //colocando os objs padrões em uma variavel global chamada h
     res.locals.h = infoSite    
     res.locals.flashes = req.flash()
+    res.locals.user = req.user
     
     next()
 })

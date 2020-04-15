@@ -46,9 +46,15 @@
 <body>
 
 <header>
+    
     {{#pageTitle}}
         <h1>{{pageTitle}}</h1>
     {{/pageTitle}}
+
+    {{#user}}
+    <p>Olá, <strong>{{user.name}}</strong>! <a href="/users/logout">Sair</a></p>
+    {{/user}}
+    
     {{^pageTitle}}
         <h1>{{h.defaultTitle}}</h1>
     {{/pageTitle}}

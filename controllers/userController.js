@@ -17,10 +17,17 @@ exports.loginAction = (req, res)=>{
             res.redirect('/users/login')
             return
         }
+        req.login(result, ()=>{})
+
         req.flash('success', "Você foi logado com sucesso")
         res.redirect('/')
     })
     
+}
+exports.logoutAction = (req, res)=>{
+    req.logout()
+    req.flash('success', 'Logout Feito com Sucesso!')
+    res.redirect('/')
 }
 exports.registerAction = async (req, res)=>{
     const newUser = new User(req.body)

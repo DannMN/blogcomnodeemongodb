@@ -19,6 +19,8 @@ router.post('/users/login', userController.loginAction)
 router.get('/users/singup', userController.register)
 router.post('/users/singup', userController.registerAction)
 
+router.get('/users/logout', userController.logoutAction)
+
 router.get('/post/add', postController.add)
 router.post('/post/add',
             imageMiddleware.upload,
