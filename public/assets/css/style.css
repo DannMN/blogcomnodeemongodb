@@ -39,6 +39,13 @@ padding:10px;
     color:#FFF;
     padding:10px 20px;
     border-radius:5px;
+    margin: auto;
+}
+div.container{
+    margin: auto;
+    margin-top: 10px;
+    max-width: 1024px;
+    display: flex;    
 }
 .post {
     width:300px;
@@ -52,6 +59,7 @@ padding:10px;
 }
     .post img {
     max-width:100%;
+
 }
 .post-single, .post-edit{
     margin: auto;

@@ -11,6 +11,8 @@ exports.addAction = async (req, res)=>{
     //arrumando as tags em um array separado por virgula
             //o map() vai passar por todos os itens do array e a função trim() vai tirar os espacos
     req.body.tags = req.body.tags.split(',').map(t=>t.trim())
+    // Aqui vamos associar o post ao seu autor
+    req.body.author = req.user._id
     //passando o objeto desta forma os name's dos inputs devem
     //ser os mesmo dos campos no banco de dados
     const post = new Post(req.body)

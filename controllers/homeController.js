@@ -29,13 +29,13 @@ exports.index = async (req, res)=>{
 
     
     info.tag = req.query.t
-    const tagFilter = ((typeof info.tag )!= 'undefined')? {tags: info.tag }:{}
+    const postFilter = ((typeof info.tag )!= 'undefined')? {tags: info.tag }:{}
     
     const tagsPromise =  Post.getTagsList();    
-    const postsPromise = Post.find(tagFilter)
+    const postsPromise = Post.findPosts(postFilter)
 
-    const [tags, posts] = await Promise.all([tagsPromise, postsPromise])
-
+    const [ tags, posts ] = await Promise.all([ tagsPromise, postsPromise ])
+    
     for(let i in tags){
         if(tags[i]._id == info.tag){
             tags[i].class = "selected"

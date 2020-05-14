@@ -11,6 +11,7 @@ mongoose.Promise = global.Promise
  */
 //Apartir daqui definimos como sera nosa tabela no banco de dados,
 //Os campos os tipos e etc
+const ObjId = mongoose.Schema.Types.ObjectId
 const postSchema = new mongoose.Schema({
     photo: String,
     title: {
@@ -28,7 +29,8 @@ const postSchema = new mongoose.Schema({
         required:true
     },
     //defini as tags como array de strings 
-    tags:[String]
+    tags:[String],
+    author: ObjId
 })
 
 postSchema.pre('save', async function(next){
@@ -55,6 +57,23 @@ postSchema.statics.getTagsList = function() {
         {  $group: { _id: '$tags', count: { $sum:1 }  }  },
         //ordenando do maior pro menor usamos count -1, o count 1 organiza do menor pro maior 
         { $sort: { count:-1 } }
+    ])
+}
+postSchema.statics.findPosts = function(filters = {}) {
+    return this.aggregate([
+        { $match:filters },
+        { $lookup:{
+            from:'users',
+            let:{ 'author':'$author' },
+            pipeline:[
+                { $match: { $expr:{ $eq:[ '$$author', '$_id' ] } } },
+                { $limit:1 }
+            ],
+            as:'author'
+        } },
+        { $addFields:{
+            'author':{ $arrayElemAt:[ '$author', 0 ] }
+        } }
     ])
 }
 

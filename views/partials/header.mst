@@ -44,15 +44,12 @@
 
 </head>
 <body>
-
-<header>
-    
+<header>    
     {{#pageTitle}}
         <h1>{{pageTitle}}</h1>
-    {{/pageTitle}}
-
+    {{/pageTitle}} 
     {{#user}}
-    <p>Olá, <strong>{{user.name}}</strong>! <a href="/users/logout">Sair</a></p>
+        <p>Olá, <strong>{{user.name}}!</strong></p>
     {{/user}}
     
     {{^pageTitle}}
@@ -60,7 +57,7 @@
     {{/pageTitle}}
     <hr>
             <ul>
-                {{!acessando os itens do menu que foi criado no helpers e saldo na 
+                {{!acessando os itens do menu que foi criado no helpers e salvo na 
                 variavel global h}}
                 {{#h.menu}}
                 <li><a href="{{slug}}">{{name}}</a></li>

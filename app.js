@@ -8,7 +8,7 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 
 
-const infoSite = require('./helpers')//importando objetos padrões
+const helpers = require('./helpers')//importando objetos padrões
 const router = require('./routes')//importando as rotas
 const errorHandler = require('./handlers/errorHandler')
 
@@ -39,19 +39,27 @@ app.use(session({
 app.use(flash())
 
 //este app.use deve ficar antes das rotas para que elas tenham acesso as informações
-
-app.use((req, res, next)=>{    
-    //colocando os objs padrões em uma variavel global chamada h
-    res.locals.h = infoSite    
-    res.locals.flashes = req.flash()
-    res.locals.user = req.user
-    
-    next()
-})
 app.use(passport.initialize())
 app.use(passport.session())
 
+app.use((req, res, next)=>{    
+    //colocando os objs padrões em uma variavel global chamada h
+    res.locals.h = { ... helpers }    
+    res.locals.flashes = req.flash()
+    res.locals.user = req.user
+
+    if ( req.isAuthenticated() ) {
+        // Filtrar menu para logged
+        res.locals.h.menu = res.locals.h.menu.filter( i => i.logged )
+    } else {
+        // Filtrar menu para guest
+        res.locals.h.menu = res.locals.h.menu.filter( i => i.guest )
+    }
+    next()
+})
+
 const User = require('./models/User')
+
 passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())

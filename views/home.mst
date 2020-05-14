@@ -7,13 +7,18 @@
     {{/tags}}
 </div>
 {{#posts}}
-<div class="post">
-<h2><a href="/post/{{slug}}">{{title}}</a></h2>
-<img src="/media/{{photo}}">
-<p>{{body}}</p>
-<a href="/post/{{slug}}/edit">[ Editar ]</a>
-<hr>
-</div>
+    <div class="post container">
+        {{#photo}}
+            <img src="/media/{{photo}}">
+        {{/photo}}
+        <h2><a href="/post/{{slug}}">{{title}}</a></h2>
+        <small>Author: {{author.name}}</small>
+        <p>{{body}}</p>
+        {{#user}}
+         <a href="/post/{{slug}}/edit">[ Editar ]</a>
+        {{/user}}
+        <hr>
+    </div>
 {{/posts}}
 
 {{> footer}}
