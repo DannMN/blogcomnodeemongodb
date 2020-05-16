@@ -1,0 +1,17 @@
+{{> header}}
+<div class="container">
+<h1>Esquici minha senha</h1>
+<form method="POST">
+<label>
+        E-mail
+        <input type="text" name="email" placeholder="Digite seu E-mail">
+    </label>
+    <br>
+    
+    <label>
+        <input type="submit" value="Esqueci minha senha">
+    </label>
+</form>
+
+</div>
+{{>footer}}

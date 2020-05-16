@@ -17,7 +17,10 @@
     </label>
 </form>
 
+<a href="/users/forget">Esqueci minha senha</a>
+<br>
 <a href="/users/singup">Ainda não sou cadastrado! Cadastrar</a>
+
 <br>
 </div>
 {{>footer}}

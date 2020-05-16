@@ -21,6 +21,16 @@ router.get('/users/logout', userController.logoutAction)
 router.get('/users/singup', userController.register)
 router.post('/users/singup', userController.registerAction)
 
+router.get('/profile', authMiddleware.isLogged, userController.profile)
+router.post('/profile', authMiddleware.isLogged, userController.profileAction)
+
+router.post('/profile/password', authMiddleware.isLogged, authMiddleware.changePassword)
+
+router.get('/users/forget', userController.forget)
+router.post('/users/forget', userController.forgetAction)
+
+router.get('/users/reset/:token', userController.forgetToken)
+router.post('/users/reset/:token', userController.forgetTokenAction)
 
 router.get('/post/add', authMiddleware.isLogged, postController.add)
 router.post('/post/add',
