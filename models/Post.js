@@ -30,7 +30,10 @@ const postSchema = new mongoose.Schema({
     },
     //defini as tags como array de strings 
     tags:[String],
-    author: ObjId
+    author: {
+        type: ObjId,
+        ref:'User'
+    }
 })
 
 postSchema.pre('save', async function(next){
@@ -60,23 +63,26 @@ postSchema.statics.getTagsList = function() {
         { $sort: { count:-1 } }
     ])
 }
-postSchema.statics.findPosts = function(filters = {}) {
-    return this.aggregate([
-        { $match:filters },
-        { $lookup:{
-            from:'users',
-            let:{ 'author':'$author' },
-            pipeline:[
-                { $match: { $expr:{ $eq:[ '$$author', '$_id' ] } } },
-                { $limit:1 }
-            ],
-            as:'author'
-        } },
-        { $addFields:{
-            'author':{ $arrayElemAt:[ '$author', 0 ] }
-        } }
-    ])
-}
+// postSchema.statics.findPosts = function(filters = {}) {
+    
+//     return this.find(filters).populate('author')
+    
+    // return this.aggregate([
+    //     { $match:filters },
+    //     { $lookup:{
+    //         from:'users',
+    //         let:{ 'author':'$author' },
+    //         pipeline:[
+    //             { $match: { $expr:{ $eq:[ '$$author', '$_id' ] } } },
+    //             { $limit:1 }
+    //         ],
+    //         as:'author'
+    //     } },
+    //     { $addFields:{
+    //         'author':{ $arrayElemAt:[ '$author', 0 ] }
+    //     } }
+    // ])
+// }
 
 
 //exportamos o modelo criado acima

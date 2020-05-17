@@ -32,7 +32,7 @@ exports.index = async (req, res)=>{
     const postFilter = ((typeof info.tag )!= 'undefined')? {tags: info.tag }:{}
     
     const tagsPromise =  Post.getTagsList();    
-    const postsPromise = Post.findPosts(postFilter)
+    const postsPromise = Post.find(postFilter).populate('author')
 
     const [ tags, posts ] = await Promise.all([ tagsPromise, postsPromise ])
     

@@ -1,5 +1,6 @@
 const User = require('../models/User')
 const crypto = require('crypto')
+const mailHandler = require('../handlers/mailHandler')
 
 exports.login = (req, res)=>{
     res.render('login')
@@ -84,10 +85,19 @@ exports.forgetAction = async (req, res) => {
     // Gerar link (com token) para trocar a senha
     const resetLink = `http://${req.headers.host}/users/reset/${user.resetPasswordToken}`
     
-    
-    req.flash('success', 'Um email foi enviado com instruções.' + resetLink)
-    res.redirect('/users/login')
+    const to = `${user.name} <${user.email}>`
+    const html = `Clique no link para redefinir sua senha: <a href="${resetLink}"> Link Aqui </a>`
+    const text = `Testando email com link: ${resetLink}`
     // enviar o link via e-mail para o usuario
+    mailHandler.send({
+        to,
+        subject:"Redefir senha",
+        html,
+        text
+
+    })
+    req.flash('success', 'Um email foi enviado com instruções.')
+    res.redirect('/users/login')
 
     // usuario vai acessar o link e trocar a senha.
 
@@ -137,4 +147,5 @@ exports.forgetTokenAction = async (req, res) => {
         req.flash('success', 'Senha alterada com sucesso!')
         res.redirect('/')
     })
+
 }
